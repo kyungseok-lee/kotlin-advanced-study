@@ -63,3 +63,33 @@ class Cage3<out T> {
     fun getAll(): List<T> = animals.toList()
 }
 ```
+
+### 제약 generic constraints
+Type에 대한 제약, Animal Type 및 Computable 구현에 대한 예시
+```kotlin
+class Cage5<T>(
+    private val animals: MutableList<T> = mutableListOf()
+) where T : Animal, T : Comparable<T> {}
+```
+
+### Type의 Nulla에 대한 제약
+```kotlin
+class Cage6<T : Any>
+```
+
+### 제네릭 함수 예시
+```kotlin
+fun <T> List<T>.hasIntersection(other: List<T>): Boolean {
+    return (this.toSet() intersect other.toSet()).isNotEmpty()
+}
+```
+
+### Type 소개와 Star Projection
+java에서 generic 사용 시 type이 유실되기 때문에 kotlin에서는 reified 키워드를 사용해 구현
+```kotlin
+inline fun <reified T> List<*>.hasAnyInstanceOf(): Boolean {
+    return this.any { it is T }
+}
+
+inline fun <reified T> List<*>.containsType() = this.firstOrNull { it is T } != null
+```

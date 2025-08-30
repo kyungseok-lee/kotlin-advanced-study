@@ -1,5 +1,51 @@
 package study.kotlin.advanced.generic
 
+// Generic 함수 예시
+fun <T> List<T>.hasIntersection(other: List<T>): Boolean {
+    return (this.toSet() intersect other.toSet()).isNotEmpty()
+}
+
+class Sparrow : Bird("참새", 100)
+class Eagle : Bird("독수리", 300)
+
+// Null에 대한 제약
+class Cage6<T : Any> {
+}
+
+abstract class Bird(
+    name: String,
+    private val size: Int,
+) : Animal(name), Comparable<Bird> {
+    override fun compareTo(other: Bird): Int {
+        //return this.size - other.size
+        return this.size.compareTo(other.size)
+    }
+}
+
+// Type Constraints
+//class Cage5<T : Animal> {
+class Cage5<T>(
+    private val animals: MutableList<T> = mutableListOf()
+) where T : Animal, T : Comparable<T> {
+    //private val animals: MutableList<T> = mutableListOf()
+
+    fun printAfterSoring() {
+        this.animals.sorted()
+            .map { it.name }
+            .let { println(it) }
+    }
+
+    fun getFirst(): T = animals.first()
+
+    fun put(animal: T) {
+        animals.add(animal)
+    }
+
+    fun moveFrom(otherCage: Cage5<T>) {
+        this.animals.addAll(otherCage.animals)
+    }
+}
+
 // declaration-site variance: 소비만 하는 클래스로 분리
 class Cage4<in T> {
     private val animals: MutableList<T> = mutableListOf()
@@ -57,7 +103,7 @@ class Cage {
         animals.add(animal)
     }
 
-    fun moveFrom(cage: Cage) {
-        this.animals.addAll(cage.animals)
+    fun moveFrom(otherCage: Cage) {
+        this.animals.addAll(otherCage.animals)
     }
 }
