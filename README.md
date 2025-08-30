@@ -93,3 +93,42 @@ inline fun <reified T> List<*>.hasAnyInstanceOf(): Boolean {
 
 inline fun <reified T> List<*>.containsType() = this.firstOrNull { it is T } != null
 ```
+
+---
+
+## 지연과 위임
+### lateinit과 lazy()
+### by lazy의 원리와 위임 프로퍼티
+### 코틀린의 표준 위임 객체
+### 위임과 관련된 몇 가지 추가 기능
+### Iterable과 Sequence (feat. JMH)
+
+---
+
+## 복잡한 함수형 프로그래밍
+### 고차 함수와 함수 리터럴
+### 복잡한 함수 타입과 고차 함수의 단점
+### inline 함수 자세히 살펴보기
+### SAM과 reference
+
+---
+
+## 연산자 오버로딩과 Kotlin DSL
+### 연산자 오버로딩
+### Kotlin DSL 직접 만들어보기
+### DSL 활용 사례 살펴보기
+
+---
+
+## 어노테이션과 리플렉션
+### 코틀린의 어노테이션
+### 코틀린의 리플렉션
+### 리플렉션 활용 - 나만의 DI 컨테이너 만들기
+### 리플렉션 활용 - 타입 안전 이종 컨테이너와 슈퍼 타입 토큰
+
+---
+
+## 코틀린을 더 알아보자!
+### 유용한 코틀린 표준 라이브러리 함수들
+### 꼬리 재귀 함수와 인라인 클래스, multiple catch
+### 유용한 k-도구들!!
